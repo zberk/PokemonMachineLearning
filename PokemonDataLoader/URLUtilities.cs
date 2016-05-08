@@ -199,12 +199,12 @@ namespace PokemonDataLoader
         /// <param name="id">Id of the resource</param>
         private static void SaveJson(string json, string folder, int id)
         {
-            string path = string.Format("{0}/pokeapi/{1}/", folder, Environment.CurrentDirectory);
+            string path = string.Format(@"{0}\pokeapi\{1}", Environment.CurrentDirectory, folder);
             if (!Directory.Exists(path))
             {
                 Directory.CreateDirectory(path);
             }
-            using (FileStream fs = new FileStream(string.Format("{0}{1}.json", path, id), FileMode.OpenOrCreate))
+            using (FileStream fs = new FileStream(string.Format(@"{0}\{1}.json", path, id), FileMode.OpenOrCreate))
             using (StreamWriter sw = new StreamWriter(fs))
             using (JsonWriter jw = new JsonTextWriter(sw))
             {
