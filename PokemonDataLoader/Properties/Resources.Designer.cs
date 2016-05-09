@@ -61,29 +61,12 @@ namespace PokemonDataLoader.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to using Newtonsoft.Json.Linq;
-        ///using System;
-        ///using System.Collections.Generic;
-        ///using System.Linq;
-        ///using System.Text;
-        ///using System.Threading.Tasks;
-        ///
-        ///namespace PokemonDataLoader
-        ///{
-        ///    internal static class JsonClassHelper
-        ///    {
-        ///        public static T GetJToken&lt;T&gt;(JObject obj, string field) where T : JToken
-        ///        {
-        ///            JToken value;
-        ///            if (obj.TryGetValue(field, out value)) return GetJToken&lt;T&gt;(value);
-        ///            else return null;
-        ///        }
-        ///
-        ///        private static T GetJToken [rest of string was truncated]&quot;;.
+        ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
         internal static byte[] JsonClassHelper {
             get {
-                return ResourceManager.GetString("JsonClassHelper", resourceCulture);
+                object obj = ResourceManager.GetObject("JsonClassHelper", resourceCulture);
+                return ((byte[])(obj));
             }
         }
     }

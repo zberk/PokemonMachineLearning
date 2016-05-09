@@ -45,7 +45,7 @@ namespace PokemonDataLoader
                 case JsonTypeEnum.NullableSomething: return "object";
                 case JsonTypeEnum.Object: return type.AssignedName;
                 case JsonTypeEnum.String: return "string";
-                default: throw new System.NotSupportedException("Unsupported json type");
+                default: throw new NotSupportedException("Unsupported json type");
             }
         }
 
@@ -207,7 +207,13 @@ namespace PokemonDataLoader
 
                 if (config.UseProperties)
                 {
-                    sw.WriteLine(prefix + "public {0} {1} {{ get; set; }}", field.Type.GetTypeName(), field.MemberName);
+                    string property = field.MemberName;
+                    if (type.AssignedName == field.MemberName)
+                        property = "_" + property;
+
+                    string propType = field.Type.GetTypeName() == null ? property : field.Type.GetTypeName();
+
+                    sw.WriteLine(prefix + "public {0} {1} {{ get; set; }}", propType, property);
                 }
                 else
                 {

@@ -52,24 +52,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CSharpCodeWriter.cs" />
-    <Compile Include="FieldInfo.cs" />
-    <Compile Include="JsonClassGenerator.cs" />
-    <Compile Include="JsonClassHelper.cs" />
-    <Compile Include="JsonType.cs" />
-    <Compile Include="JsonTypeEnum.cs" />
-    <Compile Include="DBUtilities.cs" />
+    <Compile Include="ClassHelper.cs" />
+    <Compile Include="JsonHelper\CSharpCodeWriter.cs" />
+    <Compile Include="JsonHelper\FieldInfo.cs" />
     <Compile Include="Generated\Generated.cs" />
-    <Compile Include="ICodeWriter.cs" />
-    <Compile Include="IJsonClassGeneratorConfig.cs" />
+    <Compile Include="JsonHelper\JsonClassGenerator.cs" />
+    <Compile Include="JsonHelper\JsonClassHelper.cs" />
+    <Compile Include="JsonHelper\JsonType.cs" />
+    <Compile Include="JsonHelper\JsonTypeEnum.cs" />
+    <Compile Include="DBUtilities.cs" />
+    <Compile Include="JsonHelper\ICodeWriter.cs" />
+    <Compile Include="JsonHelper\IJsonClassGeneratorConfig.cs" />
     <Compile Include="PokemonDataLoader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="JsonHelper\SQLCodeWriter.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="SQLCodeWriter.cs" />
     <Compile Include="URLUtilities.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -79,9 +80,11 @@
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

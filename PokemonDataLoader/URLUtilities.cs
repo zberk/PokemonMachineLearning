@@ -3,10 +3,9 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
+using System.Text.RegularExpressions;
+using System.Threading;
 
 namespace PokemonDataLoader
 {
@@ -113,9 +112,9 @@ namespace PokemonDataLoader
             }
 
             Console.WriteLine("\nData load complete");
-            Console.ReadLine();
+            Console.ReadKey();
         }
-
+        
         /// <summary>
         /// Calls PokeAPI to find the number of records for each record type.
         /// </summary>
@@ -145,9 +144,6 @@ namespace PokemonDataLoader
         /// <returns>JSON of resource, or empty if the id is invalid</returns>
         public static string GetDataFromID(string resourceEndpoint, int resourceId)
         {
-            if (resourceId < 1 || resourceId > resourceMaxes[resourceEndpoint])
-                return string.Empty;
-
             string newUrl = string.Format("{0}{1}/{2}", URL, resourceEndpoint, resourceId);
             return GetData(newUrl);
         }
@@ -160,9 +156,6 @@ namespace PokemonDataLoader
         /// <returns>JSON of resource, or empty if the id is invalid</returns>
         public static string GetDataFromName(string resourceEndpoint, string resourceName)
         {
-            if (string.IsNullOrWhiteSpace(resourceName))
-                return string.Empty;
-
             string newUrl = string.Format("{0}{1}/{2}", URL, resourceEndpoint, resourceName);
             return GetData(newUrl);
         }
@@ -183,7 +176,7 @@ namespace PokemonDataLoader
 
             if (response.IsSuccessStatusCode)
             {
-                return response.Content.ReadAsStringAsync().Result;                
+                return response.Content.ReadAsStringAsync().Result;
             }
             else
             {
@@ -206,13 +199,19 @@ namespace PokemonDataLoader
             }
             using (FileStream fs = new FileStream(string.Format(@"{0}\{1}.json", path, id), FileMode.OpenOrCreate))
             using (StreamWriter sw = new StreamWriter(fs))
-            using (JsonWriter jw = new JsonTextWriter(sw))
+            using (JsonTextWriter jw = new JsonTextWriter(sw))
             {
+                dynamic jsonObj = JsonConvert.DeserializeObject(json);
                 jw.Formatting = Formatting.Indented;
-
                 JsonSerializer serializer = new JsonSerializer();
-                serializer.Serialize(jw, json);
+                serializer.Serialize(jw, jsonObj);
             }
+        }
+
+        public static void SaveTest()
+        {
+            string json = GetDataFromID("ability", 1);
+            SaveJson(json, "ability", 1);
         }
     }
 }

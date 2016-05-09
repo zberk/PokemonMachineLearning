@@ -38,7 +38,7 @@ namespace PokemonDataLoader
                 case JsonTypeEnum.NullableDate: return "[datetime] NULL";
                 case JsonTypeEnum.NullableSomething: return "object NULL";
                 case JsonTypeEnum.Object: return type.AssignedName;
-                case JsonTypeEnum.String: return "[varchar](50) NULL";
+                case JsonTypeEnum.String: return "[varchar](500) NULL";
                 default: throw new System.NotSupportedException("Unsupported json type");
             }
         }

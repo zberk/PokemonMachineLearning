@@ -1,788 +1,1695 @@
-﻿using System;
+using Newtonsoft.Json;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PokemonDataLoader.Generated
 {
-
-    public class Ability2
-    {
-        public bool is_hidden { get; set; }
-        public int slot { get; set; }
-        public Ability ability { get; set; }
-    }
-
-    public class PokemonForm
-    {
-        public int id { get; set; }
-        public string name { get; set; }
-        public int order { get; set; }
-        public int form_order { get; set; }
-        public bool is_default { get; set; }
-        public bool is_battle_only { get; set; }
-        public bool is_mega { get; set; }
-        public string form_name { get; set; }
-        public Pokemon pokemon { get; set; }
-        public Sprites sprites { get; set; }
-        public VersionGroup version_group { get; set; }
-    }
-
-    public class GameIndice
-    {
-        public int game_index { get; set; }
-        public Version version { get; set; }
-    }
-
-    public class Version
-    {
-        public int id { get; set; }
-        public string name { get; set; }
-        public List<Name> names { get; set; }
-        public VersionGroup version_group { get; set; }
-    }
-
-    public class VersionGroupDetail
-    {
-        public int level_learned_at { get; set; }
-        public VersionGroup version_group { get; set; }
-        public MoveLearnMethod move_learn_method { get; set; }
-    }
-
-    public class Move2
-    {
-        public Move move { get; set; }
-        public List<VersionGroupDetail> version_group_details { get; set; }
-    }
-
-    public class Sprites
-    {
-        public object back_female { get; set; }
-        public object back_shiny_female { get; set; }
-        public string back_default { get; set; }
-        public object front_female { get; set; }
-        public object front_shiny_female { get; set; }
-        public string back_shiny { get; set; }
-        public string front_default { get; set; }
-        public string front_shiny { get; set; }
-    }
-    
-    public class Increase
-    {
-        public int change { get; set; }
-        public Move move { get; set; }
-    }
-
-    public class AffectingMoves
-    {
-        public List<Increase> increase { get; set; }
-        public List<object> decrease { get; set; }
-    }
-
-    public class AffectingNatures
-    {
-        public List<object> increase { get; set; }
-        public List<object> decrease { get; set; }
-    }
-
-    public class Characteristic
-    {
-        public int id { get; set; }
-        public int gene_modulo { get; set; }
-        public List<int> possible_values { get; set; }
-        public Stat highest_stat { get; set; }
-        public List<Description> descriptions { get; set; }
-    }
-
-    public class Stat
-    {
-        public int id { get; set; }
-        public string name { get; set; }
-        public int game_index { get; set; }
-        public bool is_battle_only { get; set; }
-        public AffectingMoves affecting_moves { get; set; }
-        public AffectingNatures affecting_natures { get; set; }
-        public List<Characteristic> characteristics { get; set; }
-        public object move_damage_class { get; set; }
-        public List<Name> names { get; set; }
-    }
-
-    public class Stat2
-    {
-        public int base_stat { get; set; }
-        public int effort { get; set; }
-        public Stat stat { get; set; }
-    }
-
-    public class Type2
-    {
-        public int slot { get; set; }
-        public Type type { get; set; }
-    }
-
-    public class Pokemon
-    {
-        public int id { get; set; }
-        public string name { get; set; }
-        public int base_experience { get; set; }
-        public int height { get; set; }
-        public bool is_default { get; set; }
-        public int order { get; set; }
-        public int weight { get; set; }
-        public List<Ability2> abilities { get; set; }
-        public List<PokemonForm> forms { get; set; }
-        public List<GameIndice> game_indices { get; set; }
-        public List<object> held_items { get; set; }
-        public List<object> location_area_encounters { get; set; }
-        public List<Move2> moves { get; set; }
-        public PokemonSpecies species { get; set; }
-        public Sprites sprites { get; set; }
-        public List<Stat2> stats { get; set; }
-        public List<Type> types { get; set; }
-    }
-
-    public class Generation
-    {
-        public int id { get; set; }
-        public string name { get; set; }
-        public List<object> abilities { get; set; }
-        public Region main_region { get; set; }
-        public List<Move> moves { get; set; }
-        public List<Name> names { get; set; }
-        public List<PokemonSpecies> pokemon_species { get; set; }
-        public List<Type> types { get; set; }
-        public List<VersionGroup> version_groups { get; set; }
-    }
-
-    public class Name
-    {
-        public string name { get; set; }
-        public Language language { get; set; }
-    }
-
-    public class EffectEntry
-    {
-        public string effect { get; set; }
-        public string short_effect { get; set; }
-        public Language language { get; set; }
-    }
-
-    public class EffectEntry2
-    {
-        public string effect { get; set; }
-        public Language language { get; set; }
-    }
-
-    public class EffectChange
-    {
-        public VersionGroup version_group { get; set; }
-        public List<EffectEntry2> effect_entries { get; set; }
-    }
-
-    public class FlavorTextEntry
-    {
-        public string flavor_text { get; set; }
-        public Language language { get; set; }
-        public VersionGroup version_group { get; set; }
-    }
-
-    public class Pokemon2
-    {
-        public bool is_hidden { get; set; }
-        public int slot { get; set; }
-        public Pokemon pokemon { get; set; }
-    }
-
-    public class Ability
-    {
-        public int id { get; set; }
-        public string name { get; set; }
-        public bool is_main_series { get; set; }
-        public Generation generation { get; set; }
-        public List<Name> names { get; set; }
-        public List<EffectEntry> effect_entries { get; set; }
-        public List<EffectChange> effect_changes { get; set; }
-        public List<FlavorTextEntry> flavor_text_entries { get; set; }
-        public List<Pokemon2> pokemon { get; set; }
-    }
-    
-    public class Language
-    {
-        public int id { get; set; }
-        public string name { get; set; }
-        public bool official { get; set; }
-        public string iso639 { get; set; }
-        public string iso3166 { get; set; }
-        public List<Name> names { get; set; }
-    }
-
-    public class Description
-    {
-        public string description { get; set; }
-        public Language language { get; set; }
-    }
-
-    public class PokemonEntry
-    {
-        public int entry_number { get; set; }
-        public PokemonSpecies pokemon_species { get; set; }
-    }
-
-    public class Pokedex
-    {
-        public int id { get; set; }
-        public string name { get; set; }
-        public bool is_main_series { get; set; }
-        public List<Description> descriptions { get; set; }
-        public List<Name> names { get; set; }
-        public List<PokemonEntry> pokemon_entries { get; set; }
-        public object region { get; set; }
-        public List<object> version_groups { get; set; }
-    }
-    
-    public class VersionGroup
-    {
-        public int id { get; set; }
-        public string name { get; set; }
-        public int order { get; set; }
-        public Generation generation { get; set; }
-        public List<MoveLearnMethod> move_learn_methods { get; set; }
-        public List<Pokedex> pokedexes { get; set; }
-        public List<Region> regions { get; set; }
-        public List<Version> versions { get; set; }
-    }
-
-    public class MoveLearnMethod
-    {
-        public int id { get; set; }
-        public string name { get; set; }
-        public List<Name> names { get; set; }
-        public List<Description> descriptions { get; set; }
-        public List<VersionGroup> version_groups { get; set; }
-    }
-
-    public class Normal
-    {
-        public List<Move> use_before { get; set; }
-        public object use_after { get; set; }
-    }
-
-    public class Super
-    {
-        public object use_before { get; set; }
-        public object use_after { get; set; }
-    }
-
-    public class ContestCombos
-    {
-        public Normal normal { get; set; }
-        public Super super { get; set; }
-    }
-
-    public class Firmness
-    {
-        public int id { get; set; }
-        public string name { get; set; }
-        public List<Berry> berries { get; set; }
-        public List<Name> names { get; set; }
-    }
-
-    public class Flavor
-    {
-        public int id { get; set; }
-        public string name { get; set; }
-        public List<Berry2> berries { get; set; }
-        public ContestType contest_type { get; set; }
-        public List<Name> names { get; set; }
-    }
-
-    public class Flavor2
-    {
-        public int potency { get; set; }
-        public Flavor flavor { get; set; }
-    }
-
-    public class ItemAttribute
-    {
-        public int id { get; set; }
-        public string name { get; set; }
-        public List<Description> descriptions { get; set; }
-        public List<Item> items { get; set; }
-        public List<Name> names { get; set; }
-    }
-
-    public class ItemPocket
-    {
-        public int id { get; set; }
-        public string name { get; set; }
-        public List<ItemCategory> categories { get; set; }
-        public List<Name> names { get; set; }
-    }
-
-    public class ItemCategory
-    {
-        public int id { get; set; }
-        public string name { get; set; }
-        public List<Item> items { get; set; }
-        public List<Name> names { get; set; }
-        public ItemPocket pocket { get; set; }
-    }
-
-    public class ItemSprites
-    {
-        public string @default { get; set; }
-    }
-
-    public class Item
-    {
-        public int id { get; set; }
-        public string name { get; set; }
-        public int cost { get; set; }
-        public object fling_power { get; set; }
-        public object fling_effect { get; set; }
-        public List<ItemAttribute> attributes { get; set; }
-        public ItemCategory category { get; set; }
-        public List<EffectEntry> effect_entries { get; set; }
-        public List<FlavorTextEntry> flavor_text_entries { get; set; }
-        public List<GameIndice> game_indices { get; set; }
-        public List<Name> names { get; set; }
-        public List<object> held_by_pokemon { get; set; }
-        public ItemSprites sprites { get; set; }
-        public object baby_trigger_for { get; set; }
-    }
-
-    public class Berry
-    {
-        public int id { get; set; }
-        public string name { get; set; }
-        public int growth_time { get; set; }
-        public int max_harvest { get; set; }
-        public int natural_gift_power { get; set; }
-        public int size { get; set; }
-        public int smoothness { get; set; }
-        public int soil_dryness { get; set; }
-        public Firmness firmness { get; set; }
-        public List<Flavor2> flavors { get; set; }
-        public Item item { get; set; }
-        public Type natural_gift_type { get; set; }
-    }
-
-    public class Berry2
-    {
-        public int potency { get; set; }
-        public Berry berry { get; set; }
-    }
-        
-    public class BerryFlavor
-    {
-        public int id { get; set; }
-        public string name { get; set; }
-        public List<Berry2> berries { get; set; }
-        public ContestType contest_type { get; set; }
-        public List<Name> names { get; set; }
-    }
-
-    public class ContestType
-    {
-        public int id { get; set; }
-        public string name { get; set; }
-        public BerryFlavor berry_flavor { get; set; }
-        public List<Name> names { get; set; }
-    }
-
-    public class ContestEffectEntry
-    {
-        public string effect { get; set; }
-        public Language language { get; set; }
-    }
-
-    public class ContestFlavorTextEntry
-    {
-        public string flavor_text { get; set; }
-        public Language language { get; set; }
-    }
-
-
-    public class ContestEffect
-    {
-        public int id { get; set; }
-        public int appeal { get; set; }
-        public int jam { get; set; }
-        public List<ContestEffectEntry> effect_entries { get; set; }
-        public List<ContestFlavorTextEntry> flavor_text_entries { get; set; }
-    }
-
-    public class DamageClass
-    {
-        public int id { get; set; }
-        public string name { get; set; }
-        public List<Description> descriptions { get; set; }
-        public List<Move> moves { get; set; }
-        public List<Name> names { get; set; }
-
-    }
-
-    public class MoveAilment
-    {
-        public int id { get; set; }
-        public string name { get; set; }
-        public List<Move> moves { get; set; }
-        public List<Name> names { get; set; }
-    }
-
-    public class MoveCategory
-    {
-        public int id { get; set; }
-        public string name { get; set; }
-        public List<Description> descriptions { get; set; }
-        public List<Move> moves { get; set; }
-    }
-
-    public class Meta
-    {
-        public MoveAilment ailment { get; set; }
-        public MoveCategory category { get; set; }
-        public object min_hits { get; set; }
-        public object max_hits { get; set; }
-        public object min_turns { get; set; }
-        public object max_turns { get; set; }
-        public int drain { get; set; }
-        public int healing { get; set; }
-        public int crit_rate { get; set; }
-        public int ailment_chance { get; set; }
-        public int flinch_chance { get; set; }
-        public int stat_chance { get; set; }
-    }
-        
-    public class SuperContestEffect
-    {
-        public int id { get; set; }
-        public int appeal { get; set; }
-        public List<ContestFlavorTextEntry> flavor_text_entries { get; set; }
-        public List<Move> moves { get; set; }
-    }
-
-    public class MoveTarget
-    {
-        public int id { get; set; }
-        public string name { get; set; }
-        public List<Description> descriptions { get; set; }
-        public List<Move> moves { get; set; }
-        public List<Name> names { get; set; }
-    }
-
-    public class Move
-    {
-        public int id { get; set; }
-        public string name { get; set; }
-        public int accuracy { get; set; }
-        public object effect_chance { get; set; }
-        public int pp { get; set; }
-        public int priority { get; set; }
-        public int power { get; set; }
-        public ContestCombos contest_combos { get; set; }
-        public ContestType contest_type { get; set; }
-        public ContestEffect contest_effect { get; set; }
-        public DamageClass damage_class { get; set; }
-        public List<EffectEntry> effect_entries { get; set; }
-        public List<object> effect_changes { get; set; }
-        public Generation generation { get; set; }
-        public Meta meta { get; set; }
-        public List<Name> names { get; set; }
-        public List<object> past_values { get; set; }
-        public List<object> stat_changes { get; set; }
-        public SuperContestEffect super_contest_effect { get; set; }
-        public MoveTarget target { get; set; }
-        public Type type { get; set; }
-    }
-
-    public class DamageRelations
-    {
-        public List<object> no_damage_to { get; set; }
-        public List<Type> half_damage_to { get; set; }
-        public List<Type> double_damage_to { get; set; }
-        public List<Type> no_damage_from { get; set; }
-        public List<Type> half_damage_from { get; set; }
-        public List<Type> double_damage_from { get; set; }
-    }
-
-    public class MoveDamageClass
-    {
-        public int id { get; set; }
-        public string name { get; set; }
-        public List<Description> descriptions { get; set; }
-        public List<Move> moves { get; set; }
-        public List<Name> names { get; set; }
-    }
-
-    public class Pokemon3
-    {
-        public int slot { get; set; }
-        public Pokemon pokemon { get; set; }
-    }
-
-    public class Type
-    {
-        public int id { get; set; }
-        public string name { get; set; }
-        public DamageRelations damage_relations { get; set; }
-        public List<GameIndice> game_indices { get; set; }
-        public Generation generation { get; set; }
-        public MoveDamageClass move_damage_class { get; set; }
-        public List<Name> names { get; set; }
-        public List<Pokemon3> pokemon { get; set; }
-        public List<Move> moves { get; set; }
-    }
-
-    public class Level
-    {
-        public int level { get; set; }
-        public int experience { get; set; }
-    }
-
-    public class GrowthRate
-    {
-        public int id { get; set; }
-        public string name { get; set; }
-        public string formula { get; set; }
-        public List<Description> descriptions { get; set; }
-        public List<Level> levels { get; set; }
-        public List<PokemonSpecies> pokemon_species { get; set; }
-    }
-
-    public class PokedexNumber
-    {
-        public int entry_number { get; set; }
-        public Pokedex pokedex { get; set; }
-    }
-
-    public class EggGroup
-    {
-        public int id { get; set; }
-        public string name { get; set; }
-        public List<Name> names { get; set; }
-        public List<PokemonSpecies> pokemon_species { get; set; }
-    }
-
-    public class PokemonColor
-    {
-        public int id { get; set; }
-        public string name { get; set; }
-        public List<Name> names { get; set; }
-        public List<PokemonSpecies> pokemon_species { get; set; }
-    }
-
-    public class AwesomeName
-    {
-        public string awesome_name { get; set; }
-        public Language language { get; set; }
-    }
-
-    public class PokemonShape
-    {
-        public int id { get; set; }
-        public string name { get; set; }
-        public List<AwesomeName> awesome_names { get; set; }
-        public List<Name> names { get; set; }
-        public List<PokemonSpecies> pokemon_species { get; set; }
-    }
-
-    public class EvolutionTrigger
-    {
-        public int id { get; set; }
-        public string name { get; set; }
-        public List<Name> names { get; set; }
-        public List<PokemonSpecies> pokemon_species { get; set; }
-    }
-
-    public class EvolutionDetails
-    {
-        public object item { get; set; }
-        public EvolutionTrigger trigger { get; set; }
-        public object gender { get; set; }
-        public object held_item { get; set; }
-        public object known_move { get; set; }
-        public object known_move_type { get; set; }
-        public object location { get; set; }
-        public int min_level { get; set; }
-        public object min_happiness { get; set; }
-        public object min_beauty { get; set; }
-        public object min_affection { get; set; }
-        public bool needs_overworld_rain { get; set; }
-        public object party_species { get; set; }
-        public object party_type { get; set; }
-        public object relative_physical_stats { get; set; }
-        public string time_of_day { get; set; }
-        public object trade_species { get; set; }
-        public bool turn_upside_down { get; set; }
-    }
-
-    public class EvolvesTo
-    {
-        public bool is_baby { get; set; }
-        public PokemonSpecies species { get; set; }
-        public EvolutionDetails evolution_details { get; set; }
-        public List<EvolvesTo> evolves_to { get; set; }
-    }
-
-    public class Chain
-    {
-        public bool is_baby { get; set; }
-        public PokemonSpecies species { get; set; }
-        public object evolution_details { get; set; }
-        public List<EvolvesTo> evolves_to { get; set; }
-    }
-
-    public class EvolutionChain
-    {
-        public int id { get; set; }
-        public object baby_trigger_item { get; set; }
-        public Chain chain { get; set; }
-    }
-
-    public class PokemonHabitat
-    {
-        public int id { get; set; }
-        public string name { get; set; }
-        public List<Name> names { get; set; }
-        public List<PokemonSpecies> pokemon_species { get; set; }
-    }
-
-    public class PokemonEncounter
-    {
-        public int base_score { get; set; }
-        public int rate { get; set; }
-        public PokemonSpecies pokemon_species { get; set; }
-    }
-
-    public class PalParkArea
-    {
-        public int id { get; set; }
-        public string name { get; set; }
-        public List<Name> names { get; set; }
-        public List<PokemonEncounter> pokemon_encounters { get; set; }
-    }
-
-    public class PalParkEncounter
-    {
-        public int base_score { get; set; }
-        public int rate { get; set; }
-        public PalParkArea area { get; set; }
-    }
-
-    public class Genera
-    {
-        public string genus { get; set; }
-        public Language language { get; set; }
-    }
-
-    public class Variety
-    {
-        public bool is_default { get; set; }
-        public Pokemon pokemon { get; set; }
-    }
-
-    public class PokemonSpecies
-    {
-        public int id { get; set; }
-        public string name { get; set; }
-        public int order { get; set; }
-        public int gender_rate { get; set; }
-        public int capture_rate { get; set; }
-        public int base_happiness { get; set; }
-        public bool is_baby { get; set; }
-        public int hatch_counter { get; set; }
-        public bool has_gender_differences { get; set; }
-        public bool forms_switchable { get; set; }
-        public GrowthRate growth_rate { get; set; }
-        public List<PokedexNumber> pokedex_numbers { get; set; }
-        public List<EggGroup> egg_groups { get; set; }
-        public PokemonColor color { get; set; }
-        public PokemonShape shape { get; set; }
-        public object evolves_from_species { get; set; }
-        public EvolutionChain evolution_chain { get; set; }
-        public PokemonHabitat habitat { get; set; }
-        public Generation generation { get; set; }
-        public List<Name> names { get; set; }
-        public List<PalParkEncounter> pal_park_encounters { get; set; }
-        public List<object> form_descriptions { get; set; }
-        public List<FlavorTextEntry> flavor_text_entries { get; set; }
-        public List<Genera> genera { get; set; }
-        public List<Variety> varieties { get; set; }
-    }
-
-    public class Location
-    {
-        public int id { get; set; }
-        public string name { get; set; }
-        public Region region { get; set; }
-        public List<Name> names { get; set; }
-        public List<GameIndice> game_indices { get; set; }
-        public List<LocationArea> areas { get; set; }
-    }
-
-    public class Region
-    {
-        public int id { get; set; }
-        public string name { get; set; }
-        public List<Location> locations { get; set; }
-        public Generation main_generation { get; set; }
-        public List<Name> names { get; set; }
-        public List<Pokedex> pokedexes { get; set; }
-        public List<VersionGroup> version_groups { get; set; }
-    }
-
-    public class VersionDetail
-    {
-        public int rate { get; set; }
-        public Version version { get; set; }
-    }
-
-    public class EncounterMethodRate
-    {
-        public EncounterMethod encounter_method { get; set; }
-        public List<VersionDetail> version_details { get; set; }
-    }
-
-    public class EncounterMethod
-    {
-        public int id { get; set; }
-        public string name { get; set; }
-        public int order { get; set; }
-        public List<Name> names { get; set; }
-    }
-
-    public class EncounterDetail
-    {
-        public int min_level { get; set; }
-        public int max_level { get; set; }
-        public List<object> condition_values { get; set; }
-        public int chance { get; set; }
-        public EncounterMethod method { get; set; }
-    }
-
-    public class VersionDetail2
-    {
-        public Version version { get; set; }
-        public int max_chance { get; set; }
-        public List<EncounterDetail> encounter_details { get; set; }
-    }
-
-    public class PokemonEncounter2
-    {
-        public Pokemon pokemon { get; set; }
-        public List<VersionDetail2> version_details { get; set; }
-    }
-
-    public class LocationArea
-    {
-        public int id { get; set; }
-        public string name { get; set; }
-        public int game_index { get; set; }
-        public List<EncounterMethodRate> encounter_method_rates { get; set; }
-        public Location location { get; set; }
-        public List<Name> names { get; set; }
-        public List<PokemonEncounter2> pokemon_encounters { get; set; }
+	public class Generation
+	{
+		[JsonProperty("name")]
+		public string Name { get; set; }
+		[JsonProperty("url")]
+		public string Url { get; set; }
+		[JsonProperty("id")]
+		public int Id { get; set; }
+		[JsonProperty("abilities")]
+		public IList<object> Abilities { get; set; }
+		[JsonProperty("main_region")]
+		public MainRegion MainRegion { get; set; }
+		[JsonProperty("moves")]
+		public IList<Move> Moves { get; set; }
+		[JsonProperty("names")]
+		public IList<Name> Names { get; set; }
+		[JsonProperty("pokemon_species")]
+		public IList<PokemonSpecy> PokemonSpecies { get; set; }
+		[JsonProperty("types")]
+		public IList<Type> Types { get; set; }
+		[JsonProperty("version_groups")]
+		public IList<VersionGroup> VersionGroups { get; set; }
+	}
+
+	public class Language
+	{
+		[JsonProperty("name")]
+		public string Name { get; set; }
+		[JsonProperty("url")]
+		public string Url { get; set; }
+		[JsonProperty("id")]
+		public int Id { get; set; }
+		[JsonProperty("official")]
+		public bool Official { get; set; }
+		[JsonProperty("iso639")]
+		public string Iso639 { get; set; }
+		[JsonProperty("iso3166")]
+		public string Iso3166 { get; set; }
+		[JsonProperty("names")]
+		public IList<Name> Names { get; set; }
+	}
+
+	public class Name
+	{
+		[JsonProperty("name")]
+		public string _Name { get; set; }
+		[JsonProperty("language")]
+		public Language Language { get; set; }
+		[JsonProperty("color")]
+		public string Color { get; set; }
+	}
+
+	public class EffectEntry
+	{
+		[JsonProperty("effect")]
+		public string Effect { get; set; }
+		[JsonProperty("short_effect")]
+		public string ShortEffect { get; set; }
+		[JsonProperty("language")]
+		public Language Language { get; set; }
+	}
+
+	public class VersionGroup
+	{
+		[JsonProperty("name")]
+		public string Name { get; set; }
+		[JsonProperty("url")]
+		public string Url { get; set; }
+		[JsonProperty("id")]
+		public int Id { get; set; }
+		[JsonProperty("order")]
+		public int Order { get; set; }
+		[JsonProperty("generation")]
+		public Generation Generation { get; set; }
+		[JsonProperty("move_learn_methods")]
+		public IList<MoveLearnMethod> MoveLearnMethods { get; set; }
+		[JsonProperty("pokedexes")]
+		public IList<Pokedex> Pokedexes { get; set; }
+		[JsonProperty("regions")]
+		public IList<Region> Regions { get; set; }
+		[JsonProperty("versions")]
+		public IList<Version> Versions { get; set; }
+	}
+
+	public class EffectChange
+    {
+
+        [JsonProperty("version_group")]
+        public VersionGroup VersionGroup { get; set; }
+
+        [JsonProperty("effect_entries")]
+        public IList<EffectEntry> EffectEntries { get; set; }
+    }
+	public class FlavorTextEntry
+	{
+		[JsonProperty("flavor_text")]
+		public string FlavorText { get; set; }
+		[JsonProperty("language")]
+		public Language Language { get; set; }
+		[JsonProperty("version_group")]
+		public VersionGroup VersionGroup { get; set; }
+		[JsonProperty("text")]
+		public string Text { get; set; }
+		[JsonProperty("version")]
+		public Version Version { get; set; }
+	}
+
+	public class Pokemon
+	{
+		[JsonProperty("name")]
+		public string Name { get; set; }
+		[JsonProperty("url")]
+		public string Url { get; set; }
+		[JsonProperty("is_hidden")]
+		public bool IsHidden { get; set; }
+		[JsonProperty("slot")]
+		public int Slot { get; set; }
+		[JsonProperty("pokemon")]
+		public Pokemon _Pokemon { get; set; }
+		[JsonProperty("id")]
+		public int Id { get; set; }
+		[JsonProperty("base_experience")]
+		public int BaseExperience { get; set; }
+		[JsonProperty("height")]
+		public int Height { get; set; }
+		[JsonProperty("is_default")]
+		public bool IsDefault { get; set; }
+		[JsonProperty("order")]
+		public int Order { get; set; }
+		[JsonProperty("weight")]
+		public int Weight { get; set; }
+		[JsonProperty("abilities")]
+		public IList<Ability> Abilities { get; set; }
+		[JsonProperty("forms")]
+		public IList<Form> Forms { get; set; }
+		[JsonProperty("game_indices")]
+		public IList<GameIndice> GameIndices { get; set; }
+		[JsonProperty("held_items")]
+		public IList<object> HeldItems { get; set; }
+		[JsonProperty("location_area_encounters")]
+		public IList<object> LocationAreaEncounters { get; set; }
+		[JsonProperty("moves")]
+		public IList<Move> Moves { get; set; }
+		[JsonProperty("species")]
+		public Species Species { get; set; }
+		[JsonProperty("sprites")]
+		public Sprites Sprites { get; set; }
+		[JsonProperty("stats")]
+		public IList<Stat> Stats { get; set; }
+		[JsonProperty("types")]
+		public IList<Type> Types { get; set; }
+	}
+
+	public class Ability
+	{
+		[JsonProperty("id")]
+		public int Id { get; set; }
+		[JsonProperty("name")]
+		public string Name { get; set; }
+		[JsonProperty("is_main_series")]
+		public bool IsMainSeries { get; set; }
+		[JsonProperty("generation")]
+		public Generation Generation { get; set; }
+		[JsonProperty("names")]
+		public IList<Name> Names { get; set; }
+		[JsonProperty("effect_entries")]
+		public IList<EffectEntry> EffectEntries { get; set; }
+		[JsonProperty("effect_changes")]
+		public IList<EffectChange> EffectChanges { get; set; }
+		[JsonProperty("flavor_text_entries")]
+		public IList<FlavorTextEntry> FlavorTextEntries { get; set; }
+		[JsonProperty("pokemon")]
+		public IList<Pokemon> Pokemon { get; set; }
+		[JsonProperty("url")]
+		public string Url { get; set; }
+		[JsonProperty("is_hidden")]
+		public bool IsHidden { get; set; }
+		[JsonProperty("slot")]
+		public int Slot { get; set; }
+		[JsonProperty("ability")]
+		public Ability _Ability { get; set; }
+	}
+
+	public class Firmness
+    {
+
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("url")]
+        public string Url { get; set; }
+    }
+	public class Flavor
+	{
+		[JsonProperty("name")]
+		public string Name { get; set; }
+		[JsonProperty("url")]
+		public string Url { get; set; }
+		[JsonProperty("potency")]
+		public int Potency { get; set; }
+		[JsonProperty("flavor")]
+		public Flavor _Flavor { get; set; }
+	}
+
+	public class Item
+	{
+		[JsonProperty("name")]
+		public string Name { get; set; }
+		[JsonProperty("url")]
+		public string Url { get; set; }
+		[JsonProperty("id")]
+		public int Id { get; set; }
+		[JsonProperty("cost")]
+		public int Cost { get; set; }
+		[JsonProperty("fling_power")]
+		public object FlingPower { get; set; }
+		[JsonProperty("fling_effect")]
+		public object FlingEffect { get; set; }
+		[JsonProperty("attributes")]
+		public IList<Attribute> Attributes { get; set; }
+		[JsonProperty("category")]
+		public Category Category { get; set; }
+		[JsonProperty("effect_entries")]
+		public IList<EffectEntry> EffectEntries { get; set; }
+		[JsonProperty("flavor_text_entries")]
+		public IList<FlavorTextEntry> FlavorTextEntries { get; set; }
+		[JsonProperty("game_indices")]
+		public IList<GameIndice> GameIndices { get; set; }
+		[JsonProperty("names")]
+		public IList<Name> Names { get; set; }
+		[JsonProperty("held_by_pokemon")]
+		public IList<object> HeldByPokemon { get; set; }
+		[JsonProperty("sprites")]
+		public Sprites Sprites { get; set; }
+		[JsonProperty("baby_trigger_for")]
+		public object BabyTriggerFor { get; set; }
+	}
+
+	public class NaturalGiftType
+    {
+
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("url")]
+        public string Url { get; set; }
+    }
+	public class Berry
+	{
+		[JsonProperty("id")]
+		public int Id { get; set; }
+		[JsonProperty("name")]
+		public string Name { get; set; }
+		[JsonProperty("growth_time")]
+		public int GrowthTime { get; set; }
+		[JsonProperty("max_harvest")]
+		public int MaxHarvest { get; set; }
+		[JsonProperty("natural_gift_power")]
+		public int NaturalGiftPower { get; set; }
+		[JsonProperty("size")]
+		public int Size { get; set; }
+		[JsonProperty("smoothness")]
+		public int Smoothness { get; set; }
+		[JsonProperty("soil_dryness")]
+		public int SoilDryness { get; set; }
+		[JsonProperty("firmness")]
+		public Firmness Firmness { get; set; }
+		[JsonProperty("flavors")]
+		public IList<Flavor> Flavors { get; set; }
+		[JsonProperty("item")]
+		public Item Item { get; set; }
+		[JsonProperty("natural_gift_type")]
+		public NaturalGiftType NaturalGiftType { get; set; }
+		[JsonProperty("url")]
+		public string Url { get; set; }
+		[JsonProperty("potency")]
+		public int Potency { get; set; }
+		[JsonProperty("berry")]
+		public Berry _Berry { get; set; }
+	}
+
+	public class BerryFirmness
+    {
+
+        [JsonProperty("id")]
+        public int Id { get; set; }
+
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("berries")]
+        public IList<Berry> Berries { get; set; }
+
+        [JsonProperty("names")]
+        public IList<Name> Names { get; set; }
+    }
+	public class ContestType
+	{
+		[JsonProperty("name")]
+		public string Name { get; set; }
+		[JsonProperty("url")]
+		public string Url { get; set; }
+		[JsonProperty("id")]
+		public int Id { get; set; }
+		[JsonProperty("berry_flavor")]
+		public BerryFlavor BerryFlavor { get; set; }
+		[JsonProperty("names")]
+		public IList<Name> Names { get; set; }
+	}
+
+	public class BerryFlavor
+	{
+		[JsonProperty("id")]
+		public int Id { get; set; }
+		[JsonProperty("name")]
+		public string Name { get; set; }
+		[JsonProperty("berries")]
+		public IList<Berry> Berries { get; set; }
+		[JsonProperty("contest_type")]
+		public ContestType ContestType { get; set; }
+		[JsonProperty("names")]
+		public IList<Name> Names { get; set; }
+		[JsonProperty("url")]
+		public string Url { get; set; }
+	}
+
+	public class HighestStat
+    {
+
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("url")]
+        public string Url { get; set; }
+    }
+	public class Description
+	{
+		[JsonProperty("description")]
+		public string _Description { get; set; }
+		[JsonProperty("language")]
+		public Language Language { get; set; }
+	}
+
+	public class Characteristic
+	{
+		[JsonProperty("id")]
+		public int Id { get; set; }
+		[JsonProperty("gene_modulo")]
+		public int GeneModulo { get; set; }
+		[JsonProperty("possible_values")]
+		public IList<int> PossibleValues { get; set; }
+		[JsonProperty("highest_stat")]
+		public HighestStat HighestStat { get; set; }
+		[JsonProperty("descriptions")]
+		public IList<Description> Descriptions { get; set; }
+		[JsonProperty("url")]
+		public string Url { get; set; }
+	}
+
+	public class ContestEffect
+	{
+		[JsonProperty("id")]
+		public int Id { get; set; }
+		[JsonProperty("appeal")]
+		public int Appeal { get; set; }
+		[JsonProperty("jam")]
+		public int Jam { get; set; }
+		[JsonProperty("effect_entries")]
+		public IList<EffectEntry> EffectEntries { get; set; }
+		[JsonProperty("flavor_text_entries")]
+		public IList<FlavorTextEntry> FlavorTextEntries { get; set; }
+		[JsonProperty("url")]
+		public string Url { get; set; }
+	}
+
+	public class PokemonSpecy
+	{
+		[JsonProperty("name")]
+		public string Name { get; set; }
+		[JsonProperty("url")]
+		public string Url { get; set; }
+	}
+
+	public class EggGroup
+	{
+		[JsonProperty("id")]
+		public int Id { get; set; }
+		[JsonProperty("name")]
+		public string Name { get; set; }
+		[JsonProperty("names")]
+		public IList<Name> Names { get; set; }
+		[JsonProperty("pokemon_species")]
+		public IList<PokemonSpecy> PokemonSpecies { get; set; }
+		[JsonProperty("url")]
+		public string Url { get; set; }
+	}
+
+	public class Value
+    {
+
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("url")]
+        public string Url { get; set; }
+    }
+	public class EncounterCondition
+    {
+
+        [JsonProperty("id")]
+        public int Id { get; set; }
+
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("values")]
+        public IList<Value> Values { get; set; }
+
+        [JsonProperty("names")]
+        public IList<Name> Names { get; set; }
+    }
+	public class Condition
+    {
+
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("url")]
+        public string Url { get; set; }
+    }
+	public class EncounterConditionValue
+    {
+
+        [JsonProperty("id")]
+        public int Id { get; set; }
+
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("condition")]
+        public Condition Condition { get; set; }
+
+        [JsonProperty("names")]
+        public IList<Name> Names { get; set; }
+    }
+	public class EncounterMethod
+	{
+		[JsonProperty("id")]
+		public int Id { get; set; }
+		[JsonProperty("name")]
+		public string Name { get; set; }
+		[JsonProperty("order")]
+		public int Order { get; set; }
+		[JsonProperty("names")]
+		public IList<Name> Names { get; set; }
+		[JsonProperty("url")]
+		public string Url { get; set; }
+	}
+
+	public class Species
+	{
+		[JsonProperty("name")]
+		public string Name { get; set; }
+		[JsonProperty("url")]
+		public string Url { get; set; }
+	}
+
+	public class Trigger
+    {
+
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("url")]
+        public string Url { get; set; }
+    }
+	public class EvolutionDetails
+    {
+
+        [JsonProperty("item")]
+        public object Item { get; set; }
+
+        [JsonProperty("trigger")]
+        public Trigger Trigger { get; set; }
+
+        [JsonProperty("gender")]
+        public object Gender { get; set; }
+
+        [JsonProperty("held_item")]
+        public object HeldItem { get; set; }
+
+        [JsonProperty("known_move")]
+        public object KnownMove { get; set; }
+
+        [JsonProperty("known_move_type")]
+        public object KnownMoveType { get; set; }
+
+        [JsonProperty("location")]
+        public object Location { get; set; }
+
+        [JsonProperty("min_level")]
+        public int MinLevel { get; set; }
+
+        [JsonProperty("min_happiness")]
+        public object MinHappiness { get; set; }
+
+        [JsonProperty("min_beauty")]
+        public object MinBeauty { get; set; }
+
+        [JsonProperty("min_affection")]
+        public object MinAffection { get; set; }
+
+        [JsonProperty("needs_overworld_rain")]
+        public bool NeedsOverworldRain { get; set; }
+
+        [JsonProperty("party_species")]
+        public object PartySpecies { get; set; }
+
+        [JsonProperty("party_type")]
+        public object PartyType { get; set; }
+
+        [JsonProperty("relative_physical_stats")]
+        public object RelativePhysicalStats { get; set; }
+
+        [JsonProperty("time_of_day")]
+        public string TimeOfDay { get; set; }
+
+        [JsonProperty("trade_species")]
+        public object TradeSpecies { get; set; }
+
+        [JsonProperty("turn_upside_down")]
+        public bool TurnUpsideDown { get; set; }
+    }
+	public class EvolvesTo
+	{
+		[JsonProperty("is_baby")]
+		public bool IsBaby { get; set; }
+		[JsonProperty("species")]
+		public Species Species { get; set; }
+		[JsonProperty("evolution_details")]
+		public EvolutionDetails EvolutionDetails { get; set; }
+		[JsonProperty("evolves_to")]
+		public IList<object> _EvolvesTo { get; set; }
+	}
+
+	public class Chain
+    {
+
+        [JsonProperty("is_baby")]
+        public bool IsBaby { get; set; }
+
+        [JsonProperty("species")]
+        public Species Species { get; set; }
+
+        [JsonProperty("evolution_details")]
+        public object EvolutionDetails { get; set; }
+
+        [JsonProperty("evolves_to")]
+        public IList<EvolvesTo> EvolvesTo { get; set; }
+    }
+	public class EvolutionChain
+	{
+		[JsonProperty("id")]
+		public int Id { get; set; }
+		[JsonProperty("baby_trigger_item")]
+		public object BabyTriggerItem { get; set; }
+		[JsonProperty("chain")]
+		public Chain Chain { get; set; }
+		[JsonProperty("url")]
+		public string Url { get; set; }
+	}
+
+	public class EvolutionTrigger
+    {
+
+        [JsonProperty("id")]
+        public int Id { get; set; }
+
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("names")]
+        public IList<Name> Names { get; set; }
+
+        [JsonProperty("pokemon_species")]
+        public IList<PokemonSpecy> PokemonSpecies { get; set; }
+    }
+	public class PokemonSpecies
+	{
+		[JsonProperty("name")]
+		public string Name { get; set; }
+		[JsonProperty("url")]
+		public string Url { get; set; }
+		[JsonProperty("id")]
+		public int Id { get; set; }
+		[JsonProperty("order")]
+		public int Order { get; set; }
+		[JsonProperty("gender_rate")]
+		public int GenderRate { get; set; }
+		[JsonProperty("capture_rate")]
+		public int CaptureRate { get; set; }
+		[JsonProperty("base_happiness")]
+		public int BaseHappiness { get; set; }
+		[JsonProperty("is_baby")]
+		public bool IsBaby { get; set; }
+		[JsonProperty("hatch_counter")]
+		public int HatchCounter { get; set; }
+		[JsonProperty("has_gender_differences")]
+		public bool HasGenderDifferences { get; set; }
+		[JsonProperty("forms_switchable")]
+		public bool FormsSwitchable { get; set; }
+		[JsonProperty("growth_rate")]
+		public GrowthRate GrowthRate { get; set; }
+		[JsonProperty("pokedex_numbers")]
+		public IList<PokedexNumber> PokedexNumbers { get; set; }
+		[JsonProperty("egg_groups")]
+		public IList<EggGroup> EggGroups { get; set; }
+		[JsonProperty("color")]
+		public Color Color { get; set; }
+		[JsonProperty("shape")]
+		public Shape Shape { get; set; }
+		[JsonProperty("evolves_from_species")]
+		public object EvolvesFromSpecies { get; set; }
+		[JsonProperty("evolution_chain")]
+		public EvolutionChain EvolutionChain { get; set; }
+		[JsonProperty("habitat")]
+		public Habitat Habitat { get; set; }
+		[JsonProperty("generation")]
+		public Generation Generation { get; set; }
+		[JsonProperty("names")]
+		public IList<Name> Names { get; set; }
+		[JsonProperty("pal_park_encounters")]
+		public IList<PalParkEncounter> PalParkEncounters { get; set; }
+		[JsonProperty("form_descriptions")]
+		public IList<object> FormDescriptions { get; set; }
+		[JsonProperty("flavor_text_entries")]
+		public IList<FlavorTextEntry> FlavorTextEntries { get; set; }
+		[JsonProperty("genera")]
+		public IList<Genera> Genera { get; set; }
+		[JsonProperty("varieties")]
+		public IList<Variety> Varieties { get; set; }
+	}
+
+	public class PokemonSpeciesDetail
+    {
+
+        [JsonProperty("rate")]
+        public int Rate { get; set; }
+
+        [JsonProperty("pokemon_species")]
+        public PokemonSpecies PokemonSpecies { get; set; }
+    }
+	public class RequiredForEvolution
+    {
+
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("url")]
+        public string Url { get; set; }
+    }
+	public class Gender
+    {
+
+        [JsonProperty("id")]
+        public int Id { get; set; }
+
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("pokemon_species_details")]
+        public IList<PokemonSpeciesDetail> PokemonSpeciesDetails { get; set; }
+
+        [JsonProperty("required_for_evolution")]
+        public IList<RequiredForEvolution> RequiredForEvolution { get; set; }
+    }
+	public class MainRegion
+    {
+
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("url")]
+        public string Url { get; set; }
+    }
+	public class Move
+	{
+		[JsonProperty("name")]
+		public string Name { get; set; }
+		[JsonProperty("url")]
+		public string Url { get; set; }
+		[JsonProperty("id")]
+		public int Id { get; set; }
+		[JsonProperty("accuracy")]
+		public int Accuracy { get; set; }
+		[JsonProperty("effect_chance")]
+		public object EffectChance { get; set; }
+		[JsonProperty("pp")]
+		public int Pp { get; set; }
+		[JsonProperty("priority")]
+		public int Priority { get; set; }
+		[JsonProperty("power")]
+		public int Power { get; set; }
+		[JsonProperty("contest_combos")]
+		public ContestCombos ContestCombos { get; set; }
+		[JsonProperty("contest_type")]
+		public ContestType ContestType { get; set; }
+		[JsonProperty("contest_effect")]
+		public ContestEffect ContestEffect { get; set; }
+		[JsonProperty("damage_class")]
+		public DamageClass DamageClass { get; set; }
+		[JsonProperty("effect_entries")]
+		public IList<EffectEntry> EffectEntries { get; set; }
+		[JsonProperty("effect_changes")]
+		public IList<object> EffectChanges { get; set; }
+		[JsonProperty("generation")]
+		public Generation Generation { get; set; }
+		[JsonProperty("meta")]
+		public Meta Meta { get; set; }
+		[JsonProperty("names")]
+		public IList<Name> Names { get; set; }
+		[JsonProperty("past_values")]
+		public IList<object> PastValues { get; set; }
+		[JsonProperty("stat_changes")]
+		public IList<object> StatChanges { get; set; }
+		[JsonProperty("super_contest_effect")]
+		public SuperContestEffect SuperContestEffect { get; set; }
+		[JsonProperty("target")]
+		public Target Target { get; set; }
+		[JsonProperty("type")]
+		public Type Type { get; set; }
+		[JsonProperty("move")]
+		public Move _Move { get; set; }
+		[JsonProperty("version_group_details")]
+		public IList<VersionGroupDetail> VersionGroupDetails { get; set; }
+	}
+
+	public class Type
+	{
+		[JsonProperty("name")]
+		public string Name { get; set; }
+		[JsonProperty("url")]
+		public string Url { get; set; }
+		[JsonProperty("slot")]
+		public int Slot { get; set; }
+		[JsonProperty("type")]
+		public Type _Type { get; set; }
+		[JsonProperty("id")]
+		public int Id { get; set; }
+		[JsonProperty("damage_relations")]
+		public DamageRelations DamageRelations { get; set; }
+		[JsonProperty("game_indices")]
+		public IList<GameIndice> GameIndices { get; set; }
+		[JsonProperty("generation")]
+		public Generation Generation { get; set; }
+		[JsonProperty("move_damage_class")]
+		public MoveDamageClass MoveDamageClass { get; set; }
+		[JsonProperty("names")]
+		public IList<Name> Names { get; set; }
+		[JsonProperty("pokemon")]
+		public IList<Pokemon> Pokemon { get; set; }
+		[JsonProperty("moves")]
+		public IList<Move> Moves { get; set; }
+	}
+
+	public class Level
+    {
+
+        [JsonProperty("level")]
+        public int _Level { get; set; }
+
+        [JsonProperty("experience")]
+        public int Experience { get; set; }
+    }
+	public class GrowthRate
+	{
+		[JsonProperty("id")]
+		public int Id { get; set; }
+		[JsonProperty("name")]
+		public string Name { get; set; }
+		[JsonProperty("formula")]
+		public string Formula { get; set; }
+		[JsonProperty("descriptions")]
+		public IList<Description> Descriptions { get; set; }
+		[JsonProperty("levels")]
+		public IList<Level> Levels { get; set; }
+		[JsonProperty("pokemon_species")]
+		public IList<PokemonSpecy> PokemonSpecies { get; set; }
+		[JsonProperty("url")]
+		public string Url { get; set; }
+	}
+
+	public class Attribute
+    {
+
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("url")]
+        public string Url { get; set; }
+    }
+	public class Category
+	{
+		[JsonProperty("name")]
+		public string Name { get; set; }
+		[JsonProperty("url")]
+		public string Url { get; set; }
+	}
+
+	public class GameIndice
+	{
+		[JsonProperty("game_index")]
+		public int GameIndex { get; set; }
+		[JsonProperty("generation")]
+		public Generation Generation { get; set; }
+		[JsonProperty("version")]
+		public Version Version { get; set; }
+	}
+
+	public class Sprites
+	{
+		[JsonProperty("default")]
+		public string Default { get; set; }
+		[JsonProperty("back_female")]
+		public object BackFemale { get; set; }
+		[JsonProperty("back_shiny_female")]
+		public object BackShinyFemale { get; set; }
+		[JsonProperty("back_default")]
+		public string BackDefault { get; set; }
+		[JsonProperty("front_female")]
+		public object FrontFemale { get; set; }
+		[JsonProperty("front_shiny_female")]
+		public object FrontShinyFemale { get; set; }
+		[JsonProperty("back_shiny")]
+		public string BackShiny { get; set; }
+		[JsonProperty("front_default")]
+		public string FrontDefault { get; set; }
+		[JsonProperty("front_shiny")]
+		public string FrontShiny { get; set; }
+	}
+
+	public class ItemAttribute
+    {
+
+        [JsonProperty("id")]
+        public int Id { get; set; }
+
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("descriptions")]
+        public IList<Description> Descriptions { get; set; }
+
+        [JsonProperty("items")]
+        public IList<Item> Items { get; set; }
+
+        [JsonProperty("names")]
+        public IList<Name> Names { get; set; }
+    }
+	public class Pocket
+    {
+
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("url")]
+        public string Url { get; set; }
+    }
+	public class ItemCategory
+    {
+
+        [JsonProperty("id")]
+        public int Id { get; set; }
+
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("items")]
+        public IList<Item> Items { get; set; }
+
+        [JsonProperty("names")]
+        public IList<Name> Names { get; set; }
+
+        [JsonProperty("pocket")]
+        public Pocket Pocket { get; set; }
+    }
+	public class ItemFlingEffect
+    {
+
+        [JsonProperty("id")]
+        public int Id { get; set; }
+
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("effect_entries")]
+        public IList<EffectEntry> EffectEntries { get; set; }
+
+        [JsonProperty("items")]
+        public IList<Item> Items { get; set; }
+    }
+	public class ItemPocket
+    {
+
+        [JsonProperty("id")]
+        public int Id { get; set; }
+
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("categories")]
+        public IList<Category> Categories { get; set; }
+
+        [JsonProperty("names")]
+        public IList<Name> Names { get; set; }
+    }
+	public class Region
+	{
+		[JsonProperty("name")]
+		public string Name { get; set; }
+		[JsonProperty("url")]
+		public string Url { get; set; }
+		[JsonProperty("id")]
+		public int Id { get; set; }
+		[JsonProperty("locations")]
+		public IList<Location> Locations { get; set; }
+		[JsonProperty("main_generation")]
+		public MainGeneration MainGeneration { get; set; }
+		[JsonProperty("names")]
+		public IList<Name> Names { get; set; }
+		[JsonProperty("pokedexes")]
+		public IList<Pokedex> Pokedexes { get; set; }
+		[JsonProperty("version_groups")]
+		public IList<VersionGroup> VersionGroups { get; set; }
+	}
+
+	public class Area
+	{
+		[JsonProperty("name")]
+		public string Name { get; set; }
+		[JsonProperty("url")]
+		public string Url { get; set; }
+	}
+
+	public class Location
+	{
+		[JsonProperty("id")]
+		public int Id { get; set; }
+		[JsonProperty("name")]
+		public string Name { get; set; }
+		[JsonProperty("region")]
+		public Region Region { get; set; }
+		[JsonProperty("names")]
+		public IList<Name> Names { get; set; }
+		[JsonProperty("game_indices")]
+		public IList<GameIndice> GameIndices { get; set; }
+		[JsonProperty("areas")]
+		public IList<Area> Areas { get; set; }
+		[JsonProperty("url")]
+		public string Url { get; set; }
+	}
+
+	public class Version
+	{
+		[JsonProperty("name")]
+		public string Name { get; set; }
+		[JsonProperty("url")]
+		public string Url { get; set; }
+		[JsonProperty("id")]
+		public int Id { get; set; }
+		[JsonProperty("names")]
+		public IList<Name> Names { get; set; }
+		[JsonProperty("version_group")]
+		public VersionGroup VersionGroup { get; set; }
+	}
+
+	public class VersionDetail
+	{
+		[JsonProperty("rate")]
+		public int Rate { get; set; }
+		[JsonProperty("version")]
+		public Version Version { get; set; }
+		[JsonProperty("max_chance")]
+		public int MaxChance { get; set; }
+		[JsonProperty("encounter_details")]
+		public IList<EncounterDetail> EncounterDetails { get; set; }
+	}
+
+	public class EncounterMethodRate
+    {
+
+        [JsonProperty("encounter_method")]
+        public EncounterMethod EncounterMethod { get; set; }
+
+        [JsonProperty("version_details")]
+        public IList<VersionDetail> VersionDetails { get; set; }
+    }
+	public class Method
+    {
+
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("url")]
+        public string Url { get; set; }
+    }
+	public class EncounterDetail
+    {
+
+        [JsonProperty("min_level")]
+        public int MinLevel { get; set; }
+
+        [JsonProperty("max_level")]
+        public int MaxLevel { get; set; }
+
+        [JsonProperty("condition_values")]
+        public IList<object> ConditionValues { get; set; }
+
+        [JsonProperty("chance")]
+        public int Chance { get; set; }
+
+        [JsonProperty("method")]
+        public Method Method { get; set; }
+    }
+	public class PokemonEncounter
+	{
+		[JsonProperty("pokemon")]
+		public Pokemon Pokemon { get; set; }
+		[JsonProperty("version_details")]
+		public IList<VersionDetail> VersionDetails { get; set; }
+		[JsonProperty("base_score")]
+		public int BaseScore { get; set; }
+		[JsonProperty("rate")]
+		public int Rate { get; set; }
+		[JsonProperty("pokemon_species")]
+		public PokemonSpecies PokemonSpecies { get; set; }
+	}
+
+	public class LocationArea
+    {
+
+        [JsonProperty("id")]
+        public int Id { get; set; }
+
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("game_index")]
+        public int GameIndex { get; set; }
+
+        [JsonProperty("encounter_method_rates")]
+        public IList<EncounterMethodRate> EncounterMethodRates { get; set; }
+
+        [JsonProperty("location")]
+        public Location Location { get; set; }
+
+        [JsonProperty("names")]
+        public IList<Name> Names { get; set; }
+
+        [JsonProperty("pokemon_encounters")]
+        public IList<PokemonEncounter> PokemonEncounters { get; set; }
+    }
+	public class UseBefore
+    {
+
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("url")]
+        public string Url { get; set; }
+    }
+	public class Normal
+    {
+
+        [JsonProperty("use_before")]
+        public IList<UseBefore> UseBefore { get; set; }
+
+        [JsonProperty("use_after")]
+        public object UseAfter { get; set; }
+    }
+	public class Super
+    {
+
+        [JsonProperty("use_before")]
+        public object UseBefore { get; set; }
+
+        [JsonProperty("use_after")]
+        public object UseAfter { get; set; }
+    }
+	public class ContestCombos
+    {
+
+        [JsonProperty("normal")]
+        public Normal Normal { get; set; }
+
+        [JsonProperty("super")]
+        public Super Super { get; set; }
+    }
+	public class DamageClass
+    {
+
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("url")]
+        public string Url { get; set; }
+    }
+	public class Ailment
+    {
+
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("url")]
+        public string Url { get; set; }
+    }
+	public class Meta
+    {
+
+        [JsonProperty("ailment")]
+        public Ailment Ailment { get; set; }
+
+        [JsonProperty("category")]
+        public Category Category { get; set; }
+
+        [JsonProperty("min_hits")]
+        public object MinHits { get; set; }
+
+        [JsonProperty("max_hits")]
+        public object MaxHits { get; set; }
+
+        [JsonProperty("min_turns")]
+        public object MinTurns { get; set; }
+
+        [JsonProperty("max_turns")]
+        public object MaxTurns { get; set; }
+
+        [JsonProperty("drain")]
+        public int Drain { get; set; }
+
+        [JsonProperty("healing")]
+        public int Healing { get; set; }
+
+        [JsonProperty("crit_rate")]
+        public int CritRate { get; set; }
+
+        [JsonProperty("ailment_chance")]
+        public int AilmentChance { get; set; }
+
+        [JsonProperty("flinch_chance")]
+        public int FlinchChance { get; set; }
+
+        [JsonProperty("stat_chance")]
+        public int StatChance { get; set; }
+    }
+	public class SuperContestEffect
+	{
+		[JsonProperty("url")]
+		public string Url { get; set; }
+		[JsonProperty("id")]
+		public int Id { get; set; }
+		[JsonProperty("appeal")]
+		public int Appeal { get; set; }
+		[JsonProperty("flavor_text_entries")]
+		public IList<FlavorTextEntry> FlavorTextEntries { get; set; }
+		[JsonProperty("moves")]
+		public IList<Move> Moves { get; set; }
+	}
+
+	public class Target
+    {
+
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("url")]
+        public string Url { get; set; }
+    }
+	public class MoveAilment
+    {
+
+        [JsonProperty("id")]
+        public int Id { get; set; }
+
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("moves")]
+        public IList<Move> Moves { get; set; }
+
+        [JsonProperty("names")]
+        public IList<Name> Names { get; set; }
+    }
+	public class MoveBattleStyle
+	{
+		[JsonProperty("id")]
+		public int Id { get; set; }
+		[JsonProperty("name")]
+		public string Name { get; set; }
+		[JsonProperty("names")]
+		public IList<Name> Names { get; set; }
+		[JsonProperty("url")]
+		public string Url { get; set; }
+	}
+
+	public class MoveCategory
+    {
+
+        [JsonProperty("id")]
+        public int Id { get; set; }
+
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("descriptions")]
+        public IList<Description> Descriptions { get; set; }
+
+        [JsonProperty("moves")]
+        public IList<Move> Moves { get; set; }
+    }
+	public class MoveDamageClass
+	{
+		[JsonProperty("id")]
+		public int Id { get; set; }
+		[JsonProperty("name")]
+		public string Name { get; set; }
+		[JsonProperty("descriptions")]
+		public IList<Description> Descriptions { get; set; }
+		[JsonProperty("moves")]
+		public IList<Move> Moves { get; set; }
+		[JsonProperty("names")]
+		public IList<Name> Names { get; set; }
+		[JsonProperty("url")]
+		public string Url { get; set; }
+	}
+
+	public class MoveLearnMethod
+	{
+		[JsonProperty("id")]
+		public int Id { get; set; }
+		[JsonProperty("name")]
+		public string Name { get; set; }
+		[JsonProperty("names")]
+		public IList<Name> Names { get; set; }
+		[JsonProperty("descriptions")]
+		public IList<Description> Descriptions { get; set; }
+		[JsonProperty("version_groups")]
+		public IList<VersionGroup> VersionGroups { get; set; }
+		[JsonProperty("url")]
+		public string Url { get; set; }
+	}
+
+	public class MoveTarget
+    {
+
+        [JsonProperty("id")]
+        public int Id { get; set; }
+
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("descriptions")]
+        public IList<Description> Descriptions { get; set; }
+
+        [JsonProperty("moves")]
+        public IList<Move> Moves { get; set; }
+
+        [JsonProperty("names")]
+        public IList<Name> Names { get; set; }
+    }
+	public class PokeathlonStat
+	{
+		[JsonProperty("name")]
+		public string Name { get; set; }
+		[JsonProperty("url")]
+		public string Url { get; set; }
+		[JsonProperty("id")]
+		public int Id { get; set; }
+		[JsonProperty("affecting_natures")]
+		public AffectingNatures AffectingNatures { get; set; }
+		[JsonProperty("names")]
+		public IList<Name> Names { get; set; }
+	}
+
+	public class PokeathlonStatChange
+    {
+
+        [JsonProperty("max_change")]
+        public int MaxChange { get; set; }
+
+        [JsonProperty("pokeathlon_stat")]
+        public PokeathlonStat PokeathlonStat { get; set; }
+    }
+	public class MoveBattleStylePreference
+    {
+
+        [JsonProperty("low_hp_preference")]
+        public int LowHpPreference { get; set; }
+
+        [JsonProperty("high_hp_preference")]
+        public int HighHpPreference { get; set; }
+
+        [JsonProperty("move_battle_style")]
+        public MoveBattleStyle MoveBattleStyle { get; set; }
+    }
+	public class Nature
+	{
+		[JsonProperty("id")]
+		public int Id { get; set; }
+		[JsonProperty("name")]
+		public string Name { get; set; }
+		[JsonProperty("decreased_stat")]
+		public object DecreasedStat { get; set; }
+		[JsonProperty("increased_stat")]
+		public object IncreasedStat { get; set; }
+		[JsonProperty("likes_flavor")]
+		public object LikesFlavor { get; set; }
+		[JsonProperty("hates_flavor")]
+		public object HatesFlavor { get; set; }
+		[JsonProperty("pokeathlon_stat_changes")]
+		public IList<PokeathlonStatChange> PokeathlonStatChanges { get; set; }
+		[JsonProperty("move_battle_style_preferences")]
+		public IList<MoveBattleStylePreference> MoveBattleStylePreferences { get; set; }
+		[JsonProperty("names")]
+		public IList<Name> Names { get; set; }
+		[JsonProperty("url")]
+		public string Url { get; set; }
+	}
+
+	public class PalParkArea
+    {
+
+        [JsonProperty("id")]
+        public int Id { get; set; }
+
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("names")]
+        public IList<Name> Names { get; set; }
+
+        [JsonProperty("pokemon_encounters")]
+        public IList<PokemonEncounter> PokemonEncounters { get; set; }
+    }
+	public class Increase
+	{
+		[JsonProperty("max_change")]
+		public int MaxChange { get; set; }
+		[JsonProperty("nature")]
+		public Nature Nature { get; set; }
+		[JsonProperty("change")]
+		public int Change { get; set; }
+		[JsonProperty("move")]
+		public Move Move { get; set; }
+	}
+
+	public class Decrease
+    {
+
+        [JsonProperty("max_change")]
+        public int MaxChange { get; set; }
+
+        [JsonProperty("nature")]
+        public Nature Nature { get; set; }
+    }
+	public class AffectingNatures
+	{
+		[JsonProperty("increase")]
+		public IList<Increase> Increase { get; set; }
+		[JsonProperty("decrease")]
+		public IList<Decrease> Decrease { get; set; }
+	}
+
+	public class PokemonEntry
+    {
+
+        [JsonProperty("entry_number")]
+        public int EntryNumber { get; set; }
+
+        [JsonProperty("pokemon_species")]
+        public PokemonSpecies PokemonSpecies { get; set; }
+    }
+	public class Pokedex
+	{
+		[JsonProperty("id")]
+		public int Id { get; set; }
+		[JsonProperty("name")]
+		public string Name { get; set; }
+		[JsonProperty("is_main_series")]
+		public bool IsMainSeries { get; set; }
+		[JsonProperty("descriptions")]
+		public IList<Description> Descriptions { get; set; }
+		[JsonProperty("names")]
+		public IList<Name> Names { get; set; }
+		[JsonProperty("pokemon_entries")]
+		public IList<PokemonEntry> PokemonEntries { get; set; }
+		[JsonProperty("region")]
+		public object Region { get; set; }
+		[JsonProperty("version_groups")]
+		public IList<object> VersionGroups { get; set; }
+		[JsonProperty("url")]
+		public string Url { get; set; }
+	}
+
+	public class Form
+    {
+
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("url")]
+        public string Url { get; set; }
+    }
+	public class VersionGroupDetail
+    {
+
+        [JsonProperty("level_learned_at")]
+        public int LevelLearnedAt { get; set; }
+
+        [JsonProperty("version_group")]
+        public VersionGroup VersionGroup { get; set; }
+
+        [JsonProperty("move_learn_method")]
+        public MoveLearnMethod MoveLearnMethod { get; set; }
+    }
+	public class Stat
+	{
+		[JsonProperty("name")]
+		public string Name { get; set; }
+		[JsonProperty("url")]
+		public string Url { get; set; }
+		[JsonProperty("base_stat")]
+		public int BaseStat { get; set; }
+		[JsonProperty("effort")]
+		public int Effort { get; set; }
+		[JsonProperty("stat")]
+		public Stat _Stat { get; set; }
+		[JsonProperty("id")]
+		public int Id { get; set; }
+		[JsonProperty("game_index")]
+		public int GameIndex { get; set; }
+		[JsonProperty("is_battle_only")]
+		public bool IsBattleOnly { get; set; }
+		[JsonProperty("affecting_moves")]
+		public AffectingMoves AffectingMoves { get; set; }
+		[JsonProperty("affecting_natures")]
+		public AffectingNatures AffectingNatures { get; set; }
+		[JsonProperty("characteristics")]
+		public IList<Characteristic> Characteristics { get; set; }
+		[JsonProperty("move_damage_class")]
+		public object MoveDamageClass { get; set; }
+		[JsonProperty("names")]
+		public IList<Name> Names { get; set; }
+	}
+
+	public class PokemonColor
+    {
+
+        [JsonProperty("id")]
+        public int Id { get; set; }
+
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("names")]
+        public IList<Name> Names { get; set; }
+
+        [JsonProperty("pokemon_species")]
+        public IList<PokemonSpecy> PokemonSpecies { get; set; }
+    }
+	public class PokemonForm
+    {
+
+        [JsonProperty("id")]
+        public int Id { get; set; }
+
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("order")]
+        public int Order { get; set; }
+
+        [JsonProperty("form_order")]
+        public int FormOrder { get; set; }
+
+        [JsonProperty("is_default")]
+        public bool IsDefault { get; set; }
+
+        [JsonProperty("is_battle_only")]
+        public bool IsBattleOnly { get; set; }
+
+        [JsonProperty("is_mega")]
+        public bool IsMega { get; set; }
+
+        [JsonProperty("form_name")]
+        public string FormName { get; set; }
+
+        [JsonProperty("pokemon")]
+        public Pokemon Pokemon { get; set; }
+
+        [JsonProperty("sprites")]
+        public Sprites Sprites { get; set; }
+
+        [JsonProperty("version_group")]
+        public VersionGroup VersionGroup { get; set; }
+    }
+	public class PokemonHabitat
+    {
+
+        [JsonProperty("id")]
+        public int Id { get; set; }
+
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("names")]
+        public IList<Name> Names { get; set; }
+
+        [JsonProperty("pokemon_species")]
+        public IList<PokemonSpecy> PokemonSpecies { get; set; }
+    }
+	public class AwesomeName
+    {
+
+        [JsonProperty("awesome_name")]
+        public string _AwesomeName { get; set; }
+
+        [JsonProperty("language")]
+        public Language Language { get; set; }
+    }
+	public class PokemonShape
+    {
+
+        [JsonProperty("id")]
+        public int Id { get; set; }
+
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("awesome_names")]
+        public IList<AwesomeName> AwesomeNames { get; set; }
+
+        [JsonProperty("names")]
+        public IList<Name> Names { get; set; }
+
+        [JsonProperty("pokemon_species")]
+        public IList<PokemonSpecy> PokemonSpecies { get; set; }
+    }
+	public class PokedexNumber
+    {
+
+        [JsonProperty("entry_number")]
+        public int EntryNumber { get; set; }
+
+        [JsonProperty("pokedex")]
+        public Pokedex Pokedex { get; set; }
+    }
+	public class Color
+    {
+
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("url")]
+        public string Url { get; set; }
+    }
+	public class Shape
+    {
+
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("url")]
+        public string Url { get; set; }
+    }
+	public class Habitat
+    {
+
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("url")]
+        public string Url { get; set; }
+    }
+	public class PalParkEncounter
+    {
+
+        [JsonProperty("base_score")]
+        public int BaseScore { get; set; }
+
+        [JsonProperty("rate")]
+        public int Rate { get; set; }
+
+        [JsonProperty("area")]
+        public Area Area { get; set; }
+    }
+	public class Genera
+    {
+
+        [JsonProperty("genus")]
+        public string Genus { get; set; }
+
+        [JsonProperty("language")]
+        public Language Language { get; set; }
+    }
+	public class Variety
+    {
+
+        [JsonProperty("is_default")]
+        public bool IsDefault { get; set; }
+
+        [JsonProperty("pokemon")]
+        public Pokemon Pokemon { get; set; }
+    }
+	public class MainGeneration
+    {
+
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("url")]
+        public string Url { get; set; }
+    }
+	public class AffectingMoves
+    {
+
+        [JsonProperty("increase")]
+        public IList<Increase> Increase { get; set; }
+
+        [JsonProperty("decrease")]
+        public IList<object> Decrease { get; set; }
+    }
+	public class NoDamageTo
+    {
+
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("url")]
+        public string Url { get; set; }
+    }
+	public class HalfDamageTo
+    {
+
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("url")]
+        public string Url { get; set; }
+    }
+	public class NoDamageFrom
+    {
+
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("url")]
+        public string Url { get; set; }
+    }
+	public class DoubleDamageFrom
+    {
+
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("url")]
+        public string Url { get; set; }
+    }
+	public class DamageRelations
+    {
+
+        [JsonProperty("no_damage_to")]
+        public IList<NoDamageTo> NoDamageTo { get; set; }
+
+        [JsonProperty("half_damage_to")]
+        public IList<HalfDamageTo> HalfDamageTo { get; set; }
+
+        [JsonProperty("double_damage_to")]
+        public IList<object> DoubleDamageTo { get; set; }
+
+        [JsonProperty("no_damage_from")]
+        public IList<NoDamageFrom> NoDamageFrom { get; set; }
+
+        [JsonProperty("half_damage_from")]
+        public IList<object> HalfDamageFrom { get; set; }
+
+        [JsonProperty("double_damage_from")]
+        public IList<DoubleDamageFrom> DoubleDamageFrom { get; set; }
     }
 }
