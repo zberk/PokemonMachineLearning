@@ -55,13 +55,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BattleManager.cs" />
-    <Compile Include="Pokemon.cs" />
-    <Compile Include="Statuses.cs" />
-    <Compile Include="IStatuses.cs" />
-    <Compile Include="Move.cs" />
-    <Compile Include="Types.cs" />
-    <Compile Include="Output.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
