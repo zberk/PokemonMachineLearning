@@ -91,7 +91,9 @@ namespace PokemonDataLoader
             GenerateObjects();
             DateTime stop = DateTime.Now;
 
-            Console.WriteLine("Data loaded in {0} minutes. Press any key to exit.", stop.Subtract(start).TotalMinutes);
+            Console.WriteLine(
+                "Data loaded in {0:N2} minutes. Press any key to exit.",
+                stop.Subtract(start).TotalMinutes);
             Console.ReadKey();
         }
 
@@ -104,8 +106,6 @@ namespace PokemonDataLoader
 
         private static void GenerateObjects()
         {
-            // Commented out code works, uncomment when finished
-
             try
             {
                 Console.WriteLine("Creating Contest Effects");
@@ -251,13 +251,18 @@ namespace PokemonDataLoader
                 if (t.IsCanceled)
                     t.Start();
                 objects.Add(await t);
-            }                
+            }
 
-            SaveToDB(objects);
+            if (list.Count == objects.Count)
+                SaveToDB(objects);
+            else
+                Console.WriteLine(
+                    "Aborting save. {0} of {1} records missing.",
+                    list.Count - objects.Count, list.Count);
 
             DateTime stop = DateTime.Now;
-            Console.WriteLine("{0} milliseconds to complete {1} records for {2} datatype.",
-                stop.Subtract(start).TotalMilliseconds, objects.Count, UrlOfType[typeof(T)]);
+            Console.WriteLine("{0:N2} seconds to complete {1} records for {2} datatype.",
+                stop.Subtract(start).TotalSeconds, objects.Count, UrlOfType[typeof(T)]);
         }
 
         private static async Task GenerateNamedObjects<T>()
@@ -281,11 +286,16 @@ namespace PokemonDataLoader
                 objects.Add(await t);
             }
 
-            SaveToDB(objects);
+            if (list.Count == objects.Count)
+                SaveToDB(objects);
+            else
+                Console.WriteLine(
+                    "Aborting save. {0} of {1} records missing.",
+                    list.Count - objects.Count, list.Count);
 
             DateTime stop = DateTime.Now;
-            Console.WriteLine("{0} milliseconds to complete {1} records for {2} datatype.",
-                stop.Subtract(start).TotalMilliseconds, objects.Count, UrlOfType[typeof(T)]);
+            Console.WriteLine("{0:N2} seconds to complete {1} records for {2} datatype.",
+                stop.Subtract(start).TotalSeconds, objects.Count, UrlOfType[typeof(T)]);
         }
 
         private static async void SaveToDB<T>(List<T> objects)
